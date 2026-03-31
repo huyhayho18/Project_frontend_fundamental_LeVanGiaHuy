@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quản lý danh mục</title>
+  <link rel="stylesheet" href="../css/category-manager.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="sidebar__logo">
+        <span class="logo-icon"><i class="fa-solid fa-fire"></i></span>
+        <span class="logo-text">Ecommerce</span>
+      </div>
+      <nav class="sidebar__nav">
+        <a href="#" class="nav-item">
+          <span class="nav-icon"><i class="fa-solid fa-house"></i></span> Thống kê
+        </a>
+        <a href="#" class="nav-item nav-item--active">
+          <span class="nav-icon"><i class="fa-solid fa-camera"></i></span> Danh mục
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon"><i class="fa-regular fa-folder"></i></span> Sản phẩm
+        </a>
+      </nav>
+    </aside>
+
+    <div class="main">
+
+      <header class="topbar">
+        <div class="topbar_right">
+          <span class="topbar_bell"><i class="fa-solid fa-bell"></i></span>
+          <img class="topbar_avatar" src="../assets/anh1.png" alt="avatar" />
+        </div>
+      </header>
+
+      <div class="content">
+
+        <div class="page-header">
+          <h1 class="page-title">Danh mục</h1>
+          <button class="btn-add">+ Thêm mới danh mục</button>
+        </div>
+
+        <div class="filters">
+          <select class="select-filter">
+            <option>Đang hoạt động</option>
+            <option>Ngừng hoạt động</option>
+            <option>Tất cả</option>
+          </select>
+          <div class="search-wrap">
+            <input type="text" class="search-input" placeholder="Tìm kiếm danh mục theo tên" />
+            <span class="search-icon">🔍</span>
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Mã danh mục <i class="fa-solid fa-arrow-down"></i></th>
+              <th>Tên danh mục <i class="fa-solid fa-arrow-down"></i></th>
+              <th>Trạng thái</th>
+              <th>Chức năng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DM001</td>
+              <td>Quần áo</td>
+              <td><span class="badge badge-active">● Đang hoạt động</span></td>
+              <td class="actions">
+                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td>DM002</td>
+              <td>Kính mắt</td>
+              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
+              <td class="actions">
+                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td>DM003</td>
+              <td>Giày dép</td>
+              <td><span class="badge badge-active">● Đang hoạt động</span></td>
+              <td class="actions">
+               <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td>DM004</td>
+              <td>Thời trang nam</td>
+              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
+              <td class="actions">
+                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td>DM005</td>
+              <td>Thời trang nữ</td>
+              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
+              <td class="actions">
+                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td>DM006</td>
+              <td>Hoa quả</td>
+              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
+              <td class="actions">
+                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td>DM007</td>
+              <td>Rau</td>
+              <td><span class="badge badge-active">● Đang hoạt động</span></td>
+              <td class="actions">
+                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td>MD008</td>
+              <td>Điện thoại</td>
+              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
+              <td class="actions">
+                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="number-pages">
+          <button class="page-btn"><i class="fa-solid fa-arrow-left"></i></button>
+          <button class="page-btn">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn page-btn-active">3</button>
+          <button class="page-btn">4</button>
+          <button class="page-btn">5</button>
+          <button class="page-btn">6</button>
+          <button class="page-btn">7</button>
+          <span class="page-dots">...</span>
+          <button class="page-btn">20</button>
+          <button class="page-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

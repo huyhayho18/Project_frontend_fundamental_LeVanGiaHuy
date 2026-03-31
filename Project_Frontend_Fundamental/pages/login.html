@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đăng nhập</title>
+  <link rel="stylesheet" href="../css/login.css"/>
+</head>
+<body>
+
+  <div class="card">
+    <h1 class="card_title">Đăng nhập</h1>
+    <p class="card_subtitle">Đăng nhập tài khoản để sử dụng hệ thống quản lý.</p>
+
+    <form>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" />
+      </div>
+
+      <div class="field">
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" name="password" />
+      </div>
+
+      <div class="row-options">
+        <label class="checkbox-wrap">
+          <input type="checkbox" name="remember" />
+          <span>Nhớ tài khoản</span>
+        </label>
+        <a href="#">Quên mật khẩu?</a>
+      </div>
+
+      <button type="submit" class="btn-submit">Đăng nhập</button>
+    </form>
+
+    <p class="card_footer">Bạn chưa có tài khoản? <a href="../pages/register.html">Đăng ký</a></p>
+  </div>
+
+</body>
+</html>

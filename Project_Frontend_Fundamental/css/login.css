@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 18px;
+  padding: 48px 52px 44px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.card_title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.card_subtitle {
+  font-size: 14px;
+  color: #6B7280;
+  margin-bottom: 36px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 7px;
+}
+
+input[type="email"],
+input[type="password"] {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #111827;
+  background-color: white;
+  outline: none;
+}
+
+input:focus {
+  border-color: #2563EB;
+}
+
+.row-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-wrap input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.checkbox-wrap span {
+  font-size: 14px;
+  color: #6B7280;
+}
+
+.row-options > a {
+  font-size: 14px;
+  color: #2563EB;
+  text-decoration: none;
+}
+
+.row-options > a:hover {
+  text-decoration: underline;
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+  height: 48px;
+  background-color: #2563EB;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #1D4ED8;
+}
+
+.card_footer {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 14px;
+  color: #6B7280;
+}
+
+.card_footer a {
+  color: #2563EB;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.card_footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 450px) {
+  body {
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .card {
+    border-radius: 12px;
+    padding: 32px 20px;
+    margin: 16px;
+  }
+
+  .card_title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .card_subtitle {
+    text-align: center;
+  }
+}
