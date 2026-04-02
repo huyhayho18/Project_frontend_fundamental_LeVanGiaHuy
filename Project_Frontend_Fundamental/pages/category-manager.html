@@ -17,11 +17,11 @@
         <span class="logo-text">Ecommerce</span>
       </div>
       <nav class="sidebar__nav">
-        <a href="#" class="nav-item">
+        <a href="../pages/dashboard.html" class="nav-item">
           <span class="nav-icon"><i class="fa-solid fa-house"></i></span> Thống kê
         </a>
         <div class="manager">
-        <a href="#" class="nav-item nav-item--active">
+        <a href="../pages/category-manager.html" class="nav-item nav-item--active">
           <span class="nav-icon"><i class="fa-solid fa-tags"></i></span> Danh mục
         </a>
         </div>
@@ -36,7 +36,7 @@
       <header class="topbar">
         <div class="topbar_right">
           <span class="topbar_bell"><i class="fa-solid fa-bell"></i></span>
-          <img class="topbar_avatar" src="../assets/anh1.png" alt="avatar" />
+          <img class="topbar_avatar" src="../assets/images/anh1.png" alt="avatar" />
         </div>
       </header>
 
@@ -77,7 +77,7 @@
               <td>Quần áo</td>
               <td><span class="badge badge-active">● Đang hoạt động</span></td>
               <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-delete" onclick="openModelDelete('Quần áo')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM001', 'Quần áo', 'active')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -86,7 +86,7 @@
               <td>Kính mắt</td>
               <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
               <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-delete" onclick="openModelDelete('Kính mắt')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM002', 'Kính mắt', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -95,7 +95,7 @@
               <td>Giày dép</td>
               <td><span class="badge badge-active">● Đang hoạt động</span></td>
               <td class="actions">
-               <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+               <button class="btn-delete" onclick="openModelDelete('Giày dép')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM003', 'Giày dép', 'active')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -104,7 +104,7 @@
               <td>Thời trang nam</td>
               <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
               <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-delete" onclick="openModelDelete('Thời trang nam')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM004', 'Thời trang nam', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -113,7 +113,7 @@
               <td>Thời trang nữ</td>
               <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
               <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-delete" onclick="openModelDelete('Thời trang nữ')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM005', 'Thời trang nữ', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -122,7 +122,7 @@
               <td>Hoa quả</td>
               <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
               <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-delete" onclick="openModelDelete('Hoa quả')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM006', 'Hoa quả', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -131,7 +131,7 @@
               <td>Rau</td>
               <td><span class="badge badge-active">● Đang hoạt động</span></td>
               <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-delete" onclick="openModelDelete('Rau')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM007', 'Rau', 'active')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -140,7 +140,7 @@
               <td>Điện thoại</td>
               <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
               <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
+                <button class="btn-delete" onclick="openModelDelete('Điện thoại')"><i class="fa-regular fa-trash-can"></i></button>
                 <button class="btn-edit" onclick="openModalEdit('DM008', 'Điện thoại', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
               </td>
             </tr>
@@ -208,11 +208,11 @@
     <div class="modal-body">
       <div class="form-group">
         <label class="form-label">Mã danh mục <span class="required">*</span></label>
-        <input type="text" class="form-input" id="editMa" placeholder="DM001" />
+        <input type="text" class="form-input" id="editID"/>
       </div>
       <div class="form-group">
         <label class="form-label">Tên danh mục <span class="required">*</span></label>
-        <input type="text" class="form-input" id="editTen" placeholder="Quần áo" />
+        <input type="text" class="form-input" id="editName" />
       </div>
       <div class="form-group">
         <label class="form-label">Trạng thái</label>
@@ -234,6 +234,17 @@
     </div>
   </div>
 
+  <div class="modal" id="modal-del">
+    <div class="modal-delete">
+      <div class="icon-error"><i class="fa-solid fa-circle-exclamation"></i></div>
+      <h2>Xác nhận</h2>
+      <p id="deleteName"></p>
+      <div>
+        <button class="btn-cancel" onclick="closeModalDelete()">Hủy</button>
+        <button class="btn-submit-delete">Xóa</button>
+      </div>
+    </div>
+  </div>
 
 
   <script>
@@ -247,8 +258,8 @@
     }
 
     function openModalEdit(id, name, status) {
-    document.getElementById('editMa').value = id;
-    document.getElementById('editTen').value = name;
+    document.getElementById('editID').value = id;
+    document.getElementById('editName').value = name;
     const radios = document.querySelectorAll('input[name="editStatus"]');
     radios.forEach(r => r.checked = (r.value === status));
     document.getElementById('modalEdit').classList.add('active');
@@ -259,6 +270,17 @@
       document.getElementById('modalEdit').classList.remove('active');
       document.getElementById('modalOverlay').classList.remove('active');
     }
+
+    function openModelDelete(name) {
+    document.getElementById('deleteName').textContent =
+      `Bạn có chắc chắn muốn xóa danh mục "${name}" khỏi hệ thống không?`;
+    document.getElementById('modal-del').classList.add('active');
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+  function closeModalDelete() {
+    document.getElementById('modal-del').classList.remove('active');
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
   </script>
 
 </body>

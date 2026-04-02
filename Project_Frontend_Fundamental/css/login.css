@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: white;
+  background-color: #f3f4f6;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -15,7 +15,7 @@ body {
 }
 
 .card {
-  background-color: white;
+  background-color: #f3f4f6;
   border-radius: 18px;
   padding: 48px 52px 44px;
   width: 100%;
@@ -103,7 +103,7 @@ input:focus {
   display: block;
   width: 100%;
   height: 48px;
-  background-color: #2563EB;
+  background: rgba(37, 99, 235, 1);
   color: white;
   border: none;
   border-radius: 10px;
@@ -137,12 +137,14 @@ input:focus {
   body {
     align-items: flex-start;
     padding: 0;
+    background: white;
   }
 
   .card {
     border-radius: 12px;
     padding: 32px 20px;
     margin: 16px;
+    background: white;
   }
 
   .card_title {
