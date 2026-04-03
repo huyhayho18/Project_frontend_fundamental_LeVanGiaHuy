@@ -8,19 +8,29 @@
 </head>
 <body>
 
-  <div class="card">
+<div class="toast" id="toast">
+    <span class="toast-icon">✔</span>
+      <div class="toast-content">
+          <strong id="toast-title"></strong>
+          <p id="toast-message"></p>
+      </div>
+</div>
+
+  <div class="card" >
     <h1 class="card_title">Đăng nhập</h1>
     <p class="card_subtitle">Đăng nhập tài khoản để sử dụng hệ thống quản lý.</p>
 
-    <form>
+    <form id="card">
       <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" />
+        <span class="error-msg" id="emailErr">Email không đúng! Vui lòng nhập lại</span>
       </div>
 
       <div class="field">
         <label for="password">Mật khẩu</label>
         <input type="password" id="password" name="password" />
+        <span class="error-msg" id="passwordErr">Mật khẩu không đúng! Vui lòng nhập lại</span>
       </div>
 
       <div class="row-options">
@@ -36,6 +46,8 @@
 
     <p class="card_footer">Bạn chưa có tài khoản? <a href="../pages/register.html">Đăng ký</a></p>
   </div>
+  
+  <script src="../js/login.js"></script>
 
 </body>
 </html>

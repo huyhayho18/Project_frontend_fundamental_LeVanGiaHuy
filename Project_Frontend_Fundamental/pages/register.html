@@ -9,6 +9,14 @@
 </head>
 <body>
 
+<div class="toast" id="toast">
+    <span class="toast-icon">✔</span>
+        <div class="toast-content">
+            <strong id="toast-title"></strong>
+            <p id="toast-message"></p>
+        </div>
+</div>
+
 <div class="card">
   <h1 class="card_title">Đăng ký tài khoản</h1>
   <p class="card_subtitle">Đăng ký tài khoản để sử dụng dịch vụ</p>
@@ -20,32 +28,40 @@
         <div class="field">
             <label for="lastName">Họ và tên đệm</label>
             <input type="text" id="lastName" name="lastName" autocomplete="family-name"/>
+            <span class="error-msg" id="lastNameErr">Vui lòng nhập lại tên đệm</span>
         </div>
 
         <div class="field">
             <label for="firstName">Tên</label>
             <input type="text" id="firstName" name="firstName" autocomplete="given-name"/>
+            <span class="error-msg" id="firstNameErr">Vui lòng nhập lại tên</span>
         </div>
     </div>
 
     <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email"/>
+        <span class="error-msg" id="emailErr">Vui lòng nhập lại email</span>
     </div>
 
     <div class="field">
         <label for="password">Mật khẩu</label>
         <input type="password" id="password" name="password" autocomplete="new-password"/>
+        <span class="error-msg" id="passwordErr">Vui lòng nhập lại mật khẩu</span>
     </div>
 
     <div class="field">
         <label for="confirm">Xác nhận mật khẩu</label>
         <input type="password" id="confirm" name="confirm" autocomplete="new-password"/>
+        <span class="error-msg" id="confirmErr">Vui lòng xác nhận lại mật khẩu</span>
     </div>
 
     <div class="checkbox-wrap">
-        <input type="checkbox" id="terms" name="terms"/>
-        <span>Bạn đồng ý với <a href="#">chính sách và điều khoản</a></span>
+        <div class="boxCheck">
+            <input type="checkbox" id="checkBox" name="terms"/>
+            <span>Bạn đồng ý với <a href="#">chính sách và điều khoản</a></span>
+        </div>
+        <span class="error-msg" id="checkBoxErr">Bạn phải đồng ý với chính sách và điều khoản</span>
     </div>
 
     <button type="submit" class="btn-submit" id="btn-submit">Đăng ký</button>
