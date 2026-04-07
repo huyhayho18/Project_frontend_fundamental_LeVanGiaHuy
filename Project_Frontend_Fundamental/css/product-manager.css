@@ -469,6 +469,11 @@ body {
   border-bottom: 2px solid #ffffff;
 }
 
+.modal-create, .modal-edit {
+  width: 900px;
+}
+
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;

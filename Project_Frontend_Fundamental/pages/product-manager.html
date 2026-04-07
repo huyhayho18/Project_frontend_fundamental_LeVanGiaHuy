@@ -16,7 +16,6 @@
 <body>
 
   <div class="layout">
-
     <aside class="sidebar">
       <div class="sidebar__logo">
         <span class="logo-icon"><i class="fa-solid fa-fire"></i></span>
@@ -30,15 +29,14 @@
           <span class="nav-icon"><i class="fa-solid fa-tags"></i></span> Danh mục
         </a>
         <div class="manager">
-        <a href="../pages/product-manager.html" class="nav-item">
-          <span class="nav-icon"><i class="fa-regular fa-folder"></i></span> Sản phẩm
-        </a>
+          <a href="../pages/product-manager.html" class="nav-item">
+            <span class="nav-icon"><i class="fa-regular fa-folder"></i></span> Sản phẩm
+          </a>
         </div>
       </nav>
     </aside>
 
     <div class="main">
-
       <header class="topbar">
         <div class="topbar_right">
           <span class="topbar_bell"><i class="fa-solid fa-bell"></i></span>
@@ -47,7 +45,6 @@
       </header>
 
       <div class="content">
-
         <div class="page-header">
           <h1 class="page-title">Sản phẩm</h1>
           <button class="btn-add" onclick="openModal()">Thêm mới sản phẩm</button>
@@ -87,19 +84,20 @@
               <th>Chức năng</th>
             </tr>
           </thead>
-          <tbody id="renderList">
-            
-          </tbody>
+          <tbody id="renderList"></tbody>
         </table>
 
         <div id="pagination" class="number-pages"></div>
-
       </div>
     </div>
   </div>
 
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+  <!-- Modal Overlay chung -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+
+  <!-- ====================== MODAL THÊM SẢN PHẨM ====================== -->
   <div class="modal" id="modal">
+    <div class="modal-create">
     <div class="modal-header">
       <span class="modal-title">Thêm mới sản phẩm</span>
       <button class="modal-close" onclick="closeModal()">
@@ -107,115 +105,163 @@
       </button>
     </div>
     <div class="modal-body">
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Mã sản phẩm <span class="required">*</span></label>
-        <input id="inputId" type="text" class="form-input" />
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Mã sản phẩm <span class="required">*</span></label>
+          <input id="inputId" type="text" class="form-input" />
+          <span class="error-msg" id="idErr"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tên sản phẩm <span class="required">*</span></label>
+          <input id="inputName" type="text" class="form-input" />
+          <span class="error-msg" id="nameErr"></span>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Tên sản phẩm <span class="required">*</span></label>
-        <input id="inputName" type="text" class="form-input" />
-      </div>
-    </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Danh mục <span class="required">*</span></label>
-        <div class="filter-select">
-          <select id="inputCategory" class="form-input form-select">
-            <option>Điện thoại</option>
-            <option>Quần áo</option>
-            <option>Giày dép</option>
-          </select>
-          <i class="fa-solid fa-chevron-down"></i>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Danh mục <span class="required">*</span></label>
+          <div class="filter-select">
+            <select id="inputCategory" class="form-input form-select"></select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <span class="error-msg" id="categoryErr"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Trạng thái</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="status" value="active" checked />
+              <span>Đang hoạt động</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="status" value="inactive" />
+              <span>Ngừng hoạt động</span>
+            </label>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Trạng thái</label>
-        <div class="radio-group">
-          <label class="radio-label">
-            <input type="radio" name="status" value="active" checked />
-            <span>Đang hoạt động</span>
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="status" value="inactive" />
-            <span>Ngừng hoạt động</span>
-          </label>
-        </div>
-      </div>
-    </div>
 
       <div class="form-row three-col">
         <div class="form-group">
           <label class="form-label">Số lượng</label>
-          <input type="number" class="form-input" id="inputQuantity"  />
+          <input type="number" class="form-input" id="inputQuantity" />
+          <span class="error-msg" id="quantityErr"></span>
         </div>
         <div class="form-group">
           <label class="form-label">Giá</label>
           <input type="number" class="form-input" id="inputPrice" />
+          <span class="error-msg" id="priceErr"></span>
         </div>
         <div class="form-group">
-          <label class="form-label">Giảm giá</label>
+          <label class="form-label">Giảm giá (%)</label>
           <input type="number" class="form-input" id="inputDiscount" />
+          <span class="error-msg" id="discountErr"></span>
         </div>
       </div>
 
-    <div class="form-group">
-      <label class="form-label">Hình ảnh <span class="required">*</span></label>
-      <input type="text" class="form-input" id="inputImage" placeholder="https://..." />
-    </div>
+      <div class="form-group">
+        <label class="form-label">Hình ảnh</label>
+        <input type="text" class="form-input" id="inputImage" placeholder="https://..." />
+      </div>
 
-    <div class="form-group">
-      <label class="form-label">Chi tiết sản phẩm</label>
-      <textarea class="form-input form-textarea" id="inputDesc" placeholder=""></textarea>
-    </div>
+      <div class="form-group">
+        <label class="form-label">Chi tiết sản phẩm</label>
+        <textarea class="form-input form-textarea" id="inputDesc"></textarea>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModal()">Hủy</button>
       <button class="btn-submit" onclick="validateCreate()">Thêm</button>
     </div>
+    </div>
   </div>
 
-  
+  <!-- ====================== MODAL SỬA SẢN PHẨM ====================== -->
   <div class="modal" id="modalEdit">
     <div class="modal-edit">
     <div class="modal-header">
-      <h2 class="modal-title">Cập nhật danh mục</h2>
-      <button class="modal-close" onclick="closeModalEdit()"><i class="fa-solid fa-xmark"></i></button>
+      <span class="modal-title">Cập nhật sản phẩm</span>
+      <button class="modal-close" onclick="closeModalEdit()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
     <div class="modal-body">
-      <div class="form-group">
-        <label class="form-label">Mã danh mục <span class="required">*</span></label>
-        <input type="text" class="form-input" id="editID"/>
-        <input type="hidden" id="editOriginalID">
-        <span class="error-msg" id="idEditErr">Không được để trống mã danh mục</span>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Tên danh mục <span class="required">*</span></label>
-        <input type="text" class="form-input" id="editName" />
-        <span class="error-msg" id="nameEditErr">Không được để trống tên danh mục</span>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Trạng thái</label>
-        <div class="radio-group">
-          <label class="radio-label">
-            <input type="radio" name="editStatus" id="inputStatus" value="active" checked />
-            <span>Đang hoạt động</span>
-          </label>
-          <label class="radio-label">
-            <input type="radio" name="editStatus" id="inputStatus" value="inactive" />
-            <span>Ngừng hoạt động</span>
-          </label>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Mã sản phẩm <span class="required">*</span></label>
+          <input type="text" class="form-input" id="editID" />
+          <input type="hidden" id="editOriginalID">
+          <span class="error-msg" id="editIdErr"></span>
         </div>
+        <div class="form-group">
+          <label class="form-label">Tên sản phẩm <span class="required">*</span></label>
+          <input type="text" class="form-input" id="editName" />
+          <span class="error-msg" id="editNameErr"></span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Danh mục <span class="required">*</span></label>
+          <div class="filter-select">
+            <select id="editCategory" class="form-input form-select"></select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <span class="error-msg" id="editCategoryErr"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Trạng thái</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="editStatus" value="active" checked />
+              <span>Đang hoạt động</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="editStatus" value="inactive" />
+              <span>Ngừng hoạt động</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row three-col">
+        <div class="form-group">
+          <label class="form-label">Số lượng</label>
+          <input type="number" class="form-input" id="editQuantity" />
+          <span class="error-msg" id="editQuantityErr"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Giá</label>
+          <input type="number" class="form-input" id="editPrice" />
+          <span class="error-msg" id="editPriceErr"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Giảm giá (%)</label>
+          <input type="number" class="form-input" id="editDiscount" />
+          <span class="error-msg" id="editDiscountErr"></span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Hình ảnh</label>
+        <input type="text" class="form-input" id="editImage" placeholder="https://..." />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Chi tiết sản phẩm</label>
+        <textarea class="form-input form-textarea" id="editDesc"></textarea>
       </div>
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModalEdit()">Hủy</button>
-      <button class="btn-submit" onclick="editCategory()">Lưu</button>
+      <button class="btn-submit" onclick="editProduct()">Lưu</button>
+    </div>
     </div>
   </div>
-  </div>
 
+
+  <!-- ====================== MODAL XÓA ====================== -->
   <div class="modal" id="modal-del">
     <div class="modal-delete">
       <div class="icon-error"><i class="fa-solid fa-circle-exclamation"></i></div>
@@ -225,49 +271,10 @@
       </div>
       <div class="del-footer">
         <button class="btn-cancel" onclick="closeModalDelete()">Hủy</button>
-        <button class="btn-submit-delete" onclick="delCategory()">Xóa</button>
+        <button class="btn-submit-delete" onclick="deleteProduct()">Xóa</button>
       </div>
     </div>
   </div>
-
-
-
-<script>
-    function openModal() {
-      document.getElementById('modal').classList.add('active');
-      document.getElementById('modalOverlay').classList.add('active');
-    }
-    function closeModal() {
-      document.getElementById('modal').classList.remove('active');
-      document.getElementById('modalOverlay').classList.remove('active');
-    }
-    function openModalEdit(id, name, status) {
-      document.getElementById('editID').value = id;
-      document.getElementById('editOriginalID').value = id;
-      document.getElementById('editName').value = name;
-      const radios = document.querySelectorAll('input[name="editStatus"]');
-      radios.forEach(r => r.checked = (r.value === status));
-      document.getElementById('modalEdit').classList.add('active');
-      document.getElementById('modalOverlay').classList.add('active');
-    }
-
-    function closeModalEdit() {
-      document.getElementById('modalEdit').classList.remove('active');
-      document.getElementById('modalOverlay').classList.remove('active');
-    }
-
-    function openModelDelete(id, name) {
-      delId = id;
-      document.getElementById('deleteName').textContent =
-        `Bạn có chắc chắn muốn xóa danh mục "${name}" khỏi hệ thống không?`;
-      document.getElementById('modal-del').classList.add('active');
-      document.getElementById('modalOverlay').classList.add('active');
-    }
-    function closeModalDelete() {
-      document.getElementById('modal-del').classList.remove('active');
-      document.getElementById('modalOverlay').classList.remove('active');
-    }
-</script>
 
 <script src="../js/product-manager.js"></script>
 
