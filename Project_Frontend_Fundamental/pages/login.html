@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Đăng nhập</title>
   <link rel="stylesheet" href="../css/login.css"/>
+  <script>
+    let checkLogin = localStorage.getItem('login');
+    if (checkLogin) {
+        window.location.href = "../pages/dashboard.html";
+    }
+  </script>
 </head>
 <body>
 
@@ -23,18 +29,18 @@
     <form id="card">
       <div class="field">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" />
-        <span class="error-msg" id="emailErr">Email không đúng! Vui lòng nhập lại</span>
+        <input type="email" id="email" name="email"/>
+        <span class="error-msg" id="emailErr">Sai thông tin đăng nhập! Vui lòng nhập lại</span>
       </div>
 
       <div class="field">
         <label for="password">Mật khẩu</label>
         <input type="password" id="password" name="password" />
-        <span class="error-msg" id="passwordErr">Mật khẩu không đúng! Vui lòng nhập lại</span>
+        <span class="error-msg" id="passwordErr">Sai thông tin đăng nhập! Vui lòng nhập lại</span>
       </div>
 
       <div class="row-options">
-        <label class="checkbox-wrap">
+        <label class="checkbox-wrap" id="checkbox">
           <input type="checkbox" name="remember" />
           <span>Nhớ tài khoản</span>
         </label>

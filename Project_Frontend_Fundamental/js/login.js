@@ -1,11 +1,13 @@
 let email = document.getElementById('email');
 let password = document.getElementById('password');
 let loginBtnAcc = document.getElementById("card");
+let checkbox = document.getElementById("checkbox")
 
 loginBtnAcc.addEventListener('submit',validateLogin);
 
 function validateLogin(e) {
     e.preventDefault();
+    loginBtnAcc.addEventListener('input',unShow);
     let check = true;
     document.querySelectorAll(".error-msg").forEach(err => err.classList.remove("show"));
     document.querySelectorAll("input").forEach(err => err.classList.remove("invalid"));
@@ -36,8 +38,32 @@ function validateLogin(e) {
         setTimeout(() => {
         window.location.href = "../pages/dashboard.html";
         }, 1000);
+        localStorage.setItem('login','true');
     }
     return check;
+}
+
+function unShow() {
+    document.querySelectorAll(".error-msg").forEach(err => err.classList.remove("show"));
+    document.querySelectorAll("input").forEach(err => err.classList.remove("invalid"));
+    if (email.value.trim() === "") {
+        showError(email, 'emailErr');
+    }
+    if (password.value.trim() === "") {
+        showError(password, 'passwordErr');
+    }
+
+    // lấy dữ liệu tuef local
+    let stored = localStorage.getItem("myUser");
+    // chuyển dữ liệu thành OJ
+    let users = JSON.parse(stored);
+    let checkUser = users.find(u => u.email === email.value.trim())
+    if (!checkUser) {
+        showError(email, 'emailErr', 'Email của bạn chưa được đăng ký');
+    }
+    if (checkUser.password !== password.value.trim()) {
+        showError(password, 'passwordErr', 'Sai mật khẩu');
+    }
 
 }
 

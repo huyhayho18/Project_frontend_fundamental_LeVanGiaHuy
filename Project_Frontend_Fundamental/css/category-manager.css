@@ -296,10 +296,11 @@ body {
   z-index: 200;
   background: #ffffff;
   border-radius: 8px;
-  width: 700px;
-  height: 417px;
-  max-width: 95vw;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.modal-create , .modal-edit {
+  width: 700px;
+  max-width: 95vw;
 }
 
 .modal.active {
@@ -423,7 +424,7 @@ body {
   border-bottom: 2px solid #ffffff;
 }
 
-.modal-footer {
+.modal-footer , .del-footer {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
@@ -484,5 +485,64 @@ body {
   width: 500px;
   height: 268px;
   background: rgba(255, 255, 255, 1);
+  padding: 24px;
+  border-radius: 8px;
 }
 
+.del-body {
+  padding: 0px 0px 24px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-bottom: 1px solid rgba(161, 161, 170, 1);
+}
+
+
+
+
+
+.icon-error {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FEE2E2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.icon-error i {
+  color: #EF4444;
+  font-size: 18px;
+}
+
+
+
+
+
+.page-btn.active {
+  background-color: rgba(0, 122, 255, 1);
+  color: white;
+}
+.page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+
+input.invalid {
+  border-color: #EF4444;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: #EF4444;
+  margin-top: 5px;
+  display: none;
+}
+
+.error-msg.show {
+  display: block;
+}

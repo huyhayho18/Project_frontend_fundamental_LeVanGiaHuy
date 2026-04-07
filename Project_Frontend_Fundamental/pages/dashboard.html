@@ -6,6 +6,12 @@
   <title>Quản lý danh mục</title>
   <link rel="stylesheet" href="../css/dashboard.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    let checkLogin = localStorage.getItem('login');
+    if (!checkLogin) {
+        window.location.href = "../pages/login.html";
+    }
+  </script>
 </head>
 <body>
 
@@ -34,9 +40,16 @@
     <div class="main">
 
       <header class="topbar">
-        <div class="topbar_right">
+        <div class="topbar_right" >
           <span class="topbar_bell"><i class="fa-solid fa-bell"></i></span>
-          <img class="topbar_avatar" src="../assets/images/anh1.png" alt="avatar" />
+          <div class="user-dropdown">
+            <img class="topbar_avatar" src="../assets/images/anh1.png" alt="avatar" onclick="showLogout()"/>
+            <div class="logout-menu" id="logoutMenu">
+                <a href="../pages/login.html" id="btnLogout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+                </a>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -48,6 +61,41 @@
         </div>
     </div>
 
+    <div id="logoutModal" class="logout-modal-overlay">
+      <div class="logout-modal">
+        <div class="logout-modal__icon">
+          <i class="fa-solid fa-circle-exclamation"></i>
+        </div>
+        <p class="logout-modal__title">Xác nhận</p>
+        <p class="logout-modal__desc">
+          Bạn có chắc chắn muốn <strong>đăng xuất</strong> khỏi hệ thống không?
+        </p>
+        <div class="logout-modal__actions">
+          <button class="btn-cancel" onclick="hideLogoutModal()">Hủy</button>
+          <a href="login.html" class="btn-confirm-logout" onclick="logout()">Đăng xuất</a>
+        </div>
+      </div>
+  </div>
+
+    <script>
+      
+      function showLogout () {
+        document.getElementById('logoutMenu').classList.add('show');
+      }
+      let logOutBtn = document.getElementById('btnLogout');
+      document.getElementById('btnLogout').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('logoutMenu').classList.remove('show');
+        const modal = document.getElementById('logoutModal');
+        modal.classList.add("show");
+      });
+      function hideLogoutModal() {
+        document.getElementById('logoutModal').style.display = 'none';
+      }
+      function logout() {
+        localStorage.removeItem('login');
+      }
+    </script>
 
 
 </body>

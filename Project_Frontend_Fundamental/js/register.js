@@ -1,4 +1,4 @@
-let users = JSON.parse(localStorage.getItem("myUser")) || [];;
+let users = JSON.parse(localStorage.getItem("myUser")) || [];
 
 let lastName = document.getElementById("lastName");
 let firstName = document.getElementById("firstName");
@@ -9,8 +9,48 @@ let createBtnAcc = document.getElementById("registerForm");
 let checkBox = document.getElementById("checkBox");
 
 
-
 createBtnAcc.addEventListener('submit',addUsers);
+
+function unShow () {
+    document.querySelectorAll(".error-msg").forEach(err => err.classList.remove("show"));
+    document.querySelectorAll("input").forEach(err => err.classList.remove("invalid"));
+
+    let stored = localStorage.getItem("myUser");
+    let users = JSON.parse(stored);
+    let checkUser = users.find(u => u.email === email.value.trim())
+
+    if (checkUser) {
+        showError(email, 'emailErr');
+    }
+
+    if (lastName.value.trim() === "") {
+        showError(lastName, 'lastNameErr');
+    }
+    if (firstName.value.trim() === "") {
+        showError(firstName, 'firstNameErr');
+    }
+    if (email.value.trim() === "") {
+        showError(email, 'emailErr');
+    } 
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showError(email, "emailErr");
+    }
+    if (password.value.trim() === "") {
+        showError(password, 'passwordErr');
+    }
+    if (password.value.length < 8) {
+        showError(password, 'passwordErr');
+    }
+    if (password.value !== confirmPassword.value) {
+        showError(confirmPassword, 'confirmErr');
+    }
+    if (confirmPassword.value.trim() === "") {
+        showError(confirmPassword, 'confirmErr');
+    }
+    if (!checkBox.checked) {
+        showError(checkBox, 'checkBoxErr');
+    }
+}
 
 function addUsers (e) {
     e.preventDefault();
@@ -34,9 +74,21 @@ function addUsers (e) {
 }
 
 function validate() {
+    createBtnAcc.addEventListener('input',unShow);
     let check = true;
     document.querySelectorAll(".error-msg").forEach(err => err.classList.remove("show"));
     document.querySelectorAll("input").forEach(err => err.classList.remove("invalid"));
+
+
+    // lấy dữ liệu tuef local;
+    // chuyển dữ liệu thành OJ
+    let users = JSON.parse(localStorage.getItem("myUser")) || [];
+    let checkUser = users.find(u => u.email === email.value.trim())
+
+    if (checkUser) {
+        showError(email, 'emailErr' , 'Email bị trùng vui lòng nhập lại');
+        check = false;
+    }
 
     if (lastName.value.trim() === "") {
         showError(lastName, 'lastNameErr');
@@ -49,9 +101,8 @@ function validate() {
     if (email.value.trim() === "") {
         showError(email, 'emailErr');
         check = false;
-    } 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-        showError(email, "emailErr");
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showError(email, "emailErr" , 'Email phải nhập đúng dịnh dạng');
         check = false;
     }
     if (password.value.trim() === "") {
@@ -59,11 +110,11 @@ function validate() {
         check = false;
     }
     if (password.value.length < 8) {
-        showError(password, 'passwordErr');
+        showError(password, 'passwordErr', 'Mật khẩu phải có tối thiểu 8 ký tự');
         check = false;
     }
     if (password.value !== confirmPassword.value) {
-        showError(confirmPassword, 'confirmErr');
+        showError(confirmPassword, 'confirmErr', 'Mật khẩu xác nhận không khớp với mật khẩu đã nhập');
         check = false;
     }
     if (confirmPassword.value.trim() === "") {
@@ -76,17 +127,18 @@ function validate() {
     }
     if (check) {
         showToast("Thành công", "Đăng ký thành công! Đang chuyển hướng...", "success");
-        setTimeout(() => {
-        window.location.href = "../pages/login.html";
-        }, 1000);
+        setTimeout(() => { window.location.href = "../pages/login.html"; }, 1000);
     }
     return check;
 }
 
 
-function showError (input , id ) {
+function showError (input , id  , message ) {
     input.classList.add('invalid');
     let idErr = document.getElementById(id);
+    if (message) {
+        idErr.innerHTML = message;
+    }
     idErr.classList.add('show');
 }
 

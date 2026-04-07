@@ -6,6 +6,12 @@
   <title>Quản lý danh mục</title>
   <link rel="stylesheet" href="../css/category-manager.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    let checkLogin = localStorage.getItem('login');
+    if (!checkLogin) {
+        window.location.href = "../pages/login.html";
+    }
+  </script>
 </head>
 <body>
 
@@ -49,15 +55,15 @@
 
         <div class="filters">
           <div class="filter-select">
-          <select class="select-filter">
-            <option>Đang hoạt động</option>
-            <option>Ngừng hoạt động</option>
-            <option>Tất cả</option>
+          <select class="select-filter" id="select-filter">
+            <option value="all">Tất cả</option>
+            <option value="active">Đang hoạt động</option>
+            <option value="inactive">Ngừng hoạt động</option>
           </select>
           <i class="fa-solid fa-chevron-down"></i>
           </div>
           <div class="search-wrap">
-            <input type="text" class="search-input" placeholder="Tìm kiếm danh mục theo tên" />
+            <input type="text" id="inputSearch" class="search-input" placeholder="Tìm kiếm danh mục theo tên" />
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>
@@ -65,100 +71,23 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Mã danh mục <i class="fa-solid fa-arrow-down"></i></th>
-              <th>Tên danh mục <i class="fa-solid fa-arrow-down"></i></th>
+              <th >
+                Mã danh mục <i style="cursor:pointer;" onclick="toggleSort('id')" id="sortIconId" class="fa-solid fa-arrow-down"></i>
+              </th>
+              <th>
+                Tên danh mục <i style="cursor:pointer;" onclick="toggleSort('category_name')" id="sortIconName" class="fa-solid fa-arrow-down"></i>
+              </th>
               <th>Trạng thái</th>
               <th>Chức năng</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>DM001</td>
-              <td>Quần áo</td>
-              <td><span class="badge badge-active">● Đang hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete" onclick="openModelDelete('Quần áo')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM001', 'Quần áo', 'active')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>DM002</td>
-              <td>Kính mắt</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete" onclick="openModelDelete('Kính mắt')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM002', 'Kính mắt', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>DM003</td>
-              <td>Giày dép</td>
-              <td><span class="badge badge-active">● Đang hoạt động</span></td>
-              <td class="actions">
-               <button class="btn-delete" onclick="openModelDelete('Giày dép')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM003', 'Giày dép', 'active')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>DM004</td>
-              <td>Thời trang nam</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete" onclick="openModelDelete('Thời trang nam')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM004', 'Thời trang nam', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>DM005</td>
-              <td>Thời trang nữ</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete" onclick="openModelDelete('Thời trang nữ')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM005', 'Thời trang nữ', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>DM006</td>
-              <td>Hoa quả</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete" onclick="openModelDelete('Hoa quả')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM006', 'Hoa quả', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>DM007</td>
-              <td>Rau</td>
-              <td><span class="badge badge-active">● Đang hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete" onclick="openModelDelete('Rau')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM007', 'Rau', 'active')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>DM008</td>
-              <td>Điện thoại</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete" onclick="openModelDelete('Điện thoại')"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit" onclick="openModalEdit('DM008', 'Điện thoại', 'inactive')"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
+          <tbody id="renderList">
+          
           </tbody>
         </table>
 
-        <div class="number-pages">
-          <button class="page-btn"><i class="fa-solid fa-arrow-left"></i></button>
-          <button class="page-btn">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">3</button>
-          <button class="page-btn">4</button>
-          <button class="page-btn">5</button>
-          <button class="page-btn">6</button>
-          <button class="page-btn">7</button>
-          <button class="page-btn">...</button>
-          <button class="page-btn">20</button>
-          <button class="page-btn"><i class="fa-solid fa-arrow-right"></i></button>
+        <div class="number-pages" id="pagination">
+
         </div>
 
       </div>
@@ -167,6 +96,7 @@
 
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
   <div class="modal" id="modal">
+    <div class="modal-create">
     <div class="modal-header">
       <h2 class="modal-title">Thêm mới danh mục</h2>
       <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -174,21 +104,23 @@
     <div class="modal-body">
       <div class="form-group">
         <label class="form-label">Mã danh mục <span class="required">*</span></label>
-        <input type="text" class="form-input" placeholder="" />
+        <input type="text" class="form-input" id="inputId" placeholder="" />
+        <span class="error-msg" id="idErr">Không được để trống mã danh mục</span>
       </div>
       <div class="form-group">
         <label class="form-label">Tên danh mục <span class="required">*</span></label>
-        <input type="text" class="form-input" placeholder="" />
+        <input type="text" class="form-input" id="inputName" placeholder="" />
+        <span class="error-msg" id="nameErr">Không được để trống tên danh mục</span>
       </div>
       <div class="form-group">
         <label class="form-label">Trạng thái</label>
         <div class="radio-group">
           <label class="radio-label">
-            <input type="radio" name="status" value="active" checked />
+            <input type="radio" name="status" id="inputStatus" value="active" checked />
             <span>Đang hoạt động</span>
           </label>
           <label class="radio-label">
-            <input type="radio" name="status" value="inactive" />
+            <input type="radio" name="status" id="inputStatus" value="inactive" />
             <span>Ngừng hoạt động</span>
           </label>
         </div>
@@ -196,11 +128,13 @@
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModal()">Hủy</button>
-      <button class="btn-submit">Thêm</button>
+      <button class="btn-submit" onclick="validateCreate()">Thêm</button>
+    </div>
     </div>
   </div>
 
   <div class="modal" id="modalEdit">
+    <div class="modal-edit">
     <div class="modal-header">
       <h2 class="modal-title">Cập nhật danh mục</h2>
       <button class="modal-close" onclick="closeModalEdit()"><i class="fa-solid fa-xmark"></i></button>
@@ -209,20 +143,23 @@
       <div class="form-group">
         <label class="form-label">Mã danh mục <span class="required">*</span></label>
         <input type="text" class="form-input" id="editID"/>
+        <input type="hidden" id="editOriginalID">
+        <span class="error-msg" id="idEditErr">Không được để trống mã danh mục</span>
       </div>
       <div class="form-group">
         <label class="form-label">Tên danh mục <span class="required">*</span></label>
         <input type="text" class="form-input" id="editName" />
+        <span class="error-msg" id="nameEditErr">Không được để trống tên danh mục</span>
       </div>
       <div class="form-group">
         <label class="form-label">Trạng thái</label>
         <div class="radio-group">
           <label class="radio-label">
-            <input type="radio" name="editStatus" value="active" checked />
+            <input type="radio" name="editStatus" id="inputStatus" value="active" checked />
             <span>Đang hoạt động</span>
           </label>
           <label class="radio-label">
-            <input type="radio" name="editStatus" value="inactive" />
+            <input type="radio" name="editStatus" id="inputStatus" value="inactive" />
             <span>Ngừng hoạt động</span>
           </label>
         </div>
@@ -230,18 +167,21 @@
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModalEdit()">Hủy</button>
-      <button class="btn-submit">Lưu</button>
+      <button class="btn-submit" onclick="editCategory()">Lưu</button>
     </div>
+  </div>
   </div>
 
   <div class="modal" id="modal-del">
     <div class="modal-delete">
       <div class="icon-error"><i class="fa-solid fa-circle-exclamation"></i></div>
-      <h2>Xác nhận</h2>
-      <p id="deleteName"></p>
-      <div>
+      <div class="del-body">
+        <h2>Xác nhận</h2>
+        <p id="deleteName"></p>
+      </div>
+      <div class="del-footer">
         <button class="btn-cancel" onclick="closeModalDelete()">Hủy</button>
-        <button class="btn-submit-delete">Xóa</button>
+        <button class="btn-submit-delete" onclick="delCategory()">Xóa</button>
       </div>
     </div>
   </div>
@@ -259,6 +199,7 @@
 
     function openModalEdit(id, name, status) {
     document.getElementById('editID').value = id;
+    document.getElementById('editOriginalID').value = id;
     document.getElementById('editName').value = name;
     const radios = document.querySelectorAll('input[name="editStatus"]');
     radios.forEach(r => r.checked = (r.value === status));
@@ -271,17 +212,21 @@
       document.getElementById('modalOverlay').classList.remove('active');
     }
 
-    function openModelDelete(name) {
-    document.getElementById('deleteName').textContent =
-      `Bạn có chắc chắn muốn xóa danh mục "${name}" khỏi hệ thống không?`;
-    document.getElementById('modal-del').classList.add('active');
-    document.getElementById('modalOverlay').classList.add('active');
+    let delId = null;
+    function openModelDelete(id, name) {
+      delId = id;
+      document.getElementById('deleteName').textContent =
+        `Bạn có chắc chắn muốn xóa danh mục "${name}" khỏi hệ thống không?`;
+      document.getElementById('modal-del').classList.add('active');
+      document.getElementById('modalOverlay').classList.add('active');
   }
   function closeModalDelete() {
     document.getElementById('modal-del').classList.remove('active');
     document.getElementById('modalOverlay').classList.remove('active');
   }
   </script>
+
+  <script src="../js/category-manager.js"></script>
 
 </body>
 </html>

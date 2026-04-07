@@ -6,6 +6,12 @@
   <title>Quản lý sản phẩm</title>
   <link rel="stylesheet" href="../css/product-manager.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    let checkLogin = localStorage.getItem('login');
+    if (!checkLogin) {
+        window.location.href = "../pages/login.html";
+    }
+  </script>
 </head>
 <body>
 
@@ -49,23 +55,21 @@
 
         <div class="filters">
           <div class="filter-select">
-          <select class="select-filter">
-            <option>Lọc theo danh mục</option>
-            <option>Ngừng hoạt động</option>
-            <option>Tất cả</option>
-          </select>
-          <i class="fa-solid fa-chevron-down"></i>
+            <select id="selectCategory" class="select-filter">
+              <option value="all">Tất cả danh mục</option>
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
           </div>
-          <div class="select">
-          <select class="select-filter">
-            <option>Lọc theo trạng thái</option>
-            <option>Ngừng hoạt động</option>
-            <option>Tất cả</option>
-          </select>
-          <i class="fa-solid fa-chevron-down"></i>
+          <div class="filter-select">
+            <select id="selectStatus" class="select-filter">
+              <option value="all">Tất cả trạng thái</option>
+              <option value="active">Đang hoạt động</option>
+              <option value="inactive">Ngừng hoạt động</option>
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
           </div>
           <div class="search-wrap">
-            <input type="text" class="search-input" placeholder="Tìm kiếm danh mục theo tên" />
+            <input type="text" id="inputSearch" class="search-input" placeholder="Tìm kiếm" />
             <i class="fa-solid fa-magnifying-glass"></i>
           </div>
         </div>
@@ -73,128 +77,22 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Mã sản phẩm </th>
-              <th>Tên sản phẩm <i class="fa-solid fa-arrow-down"></i></th>
-              <th>Giá <i class="fa-solid fa-arrow-down"></i></th>
-              <th>Số lượng </th>
-              <th>Giảm giá</th>
+              <th onclick="toggleSort('id')">Mã sản phẩm <i id="sort-id" class="sort-icon fa-solid fa-sort"></i></th>
+              <th onclick="toggleSort('product_name')">Tên sản phẩm <i id="sort-product_name" class="sort-icon fa-solid fa-sort"></i></th>
+              <th onclick="toggleSort('category')">Danh mục <i id="sort-category" class="sort-icon fa-solid fa-sort"></i></th>
+              <th onclick="toggleSort('price')">Giá <i id="sort-price" class="sort-icon fa-solid fa-sort"></i></th>
+              <th onclick="toggleSort('quantity')">Số lượng <i id="sort-quantity" class="sort-icon fa-solid fa-sort"></i></th>
+              <th onclick="toggleSort('discount')">Giảm giá <i id="sort-discount" class="sort-icon fa-solid fa-sort"></i></th>
               <th>Trạng thái</th>
               <th>Chức năng</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>SP001</td>
-              <td>Iphone 12 Pro</td>
-              <td>12.000.000</td>
-              <td>10</td>
-              <td>0%</td>
-              <td><span class="badge badge-active">● Đang hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>SP002</td>
-              <td>Samsung Galaxy X20</td>
-              <td>21.000.000</td>
-              <td>100</td>
-              <td>5%</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>SP003</td>
-              <td>Phone 8 Plú</td>
-              <td>5.000.000</td>
-              <td>10</td>
-              <td>0%</td>
-              <td><span class="badge badge-active">● Đang hoạt động</span></td>
-              <td class="actions">
-               <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>SP004</td>
-              <td>Iphone 14 Pro max</td>
-              <td>25.000.000</td>
-              <td>20</td>
-              <td>2%</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>SP005</td>
-              <td>Oppo X3</td>
-              <td>2.000.000</td>
-              <td>10</td>
-              <td>10%</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>SP006</td>
-              <td>Iphone 16</td>
-              <td>20.000.000</td>
-              <td>20</td>
-              <td>3%</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>SP007</td>
-              <td>Iphone 7 Plus</td>
-              <td>4.000.000</td>
-              <td>10</td>
-              <td>4%</td>
-              <td><span class="badge badge-active">● Đang hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>SP008</td>
-              <td>Samsung S20 Ultra</td>
-              <td>30.000.000</td>
-              <td>15</td>
-              <td>2%</td>
-              <td><span class="badge badge-inactive">● Ngừng hoạt động</span></td>
-              <td class="actions">
-                <button class="btn-delete"><i class="fa-regular fa-trash-can"></i></button>
-                <button class="btn-edit"><i class="fa-solid fa-pencil"></i></i></button>
-              </td>
-            </tr>
+          <tbody id="renderList">
+            
           </tbody>
         </table>
 
-        <div class="number-pages">
-          <button class="page-btn"><i class="fa-solid fa-arrow-left"></i></button>
-          <button class="page-btn">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">3</button>
-          <button class="page-btn">4</button>
-          <button class="page-btn">5</button>
-          <button class="page-btn">6</button>
-          <button class="page-btn">7</button>
-          <button class="page-btn">...</button>
-          <button class="page-btn">20</button>
-          <button class="page-btn"><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+        <div id="pagination" class="number-pages"></div>
 
       </div>
     </div>
@@ -212,11 +110,11 @@
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Mã sản phẩm <span class="required">*</span></label>
-        <input type="text" class="form-input" />
+        <input id="inputId" type="text" class="form-input" />
       </div>
       <div class="form-group">
         <label class="form-label">Tên sản phẩm <span class="required">*</span></label>
-        <input type="text" class="form-input" />
+        <input id="inputName" type="text" class="form-input" />
       </div>
     </div>
 
@@ -224,7 +122,7 @@
       <div class="form-group">
         <label class="form-label">Danh mục <span class="required">*</span></label>
         <div class="filter-select">
-          <select class="form-input form-select">
+          <select id="inputCategory" class="form-input form-select">
             <option>Điện thoại</option>
             <option>Quần áo</option>
             <option>Giày dép</option>
@@ -250,36 +148,92 @@
       <div class="form-row three-col">
         <div class="form-group">
           <label class="form-label">Số lượng</label>
-          <input type="number" class="form-input" value="1" />
+          <input type="number" class="form-input" id="inputQuantity"  />
         </div>
         <div class="form-group">
           <label class="form-label">Giá</label>
-          <input type="number" class="form-input" value="10000000" />
+          <input type="number" class="form-input" id="inputPrice" />
         </div>
         <div class="form-group">
           <label class="form-label">Giảm giá</label>
-          <input type="number" class="form-input" value="10" />
+          <input type="number" class="form-input" id="inputDiscount" />
         </div>
       </div>
 
     <div class="form-group">
       <label class="form-label">Hình ảnh <span class="required">*</span></label>
-      <input type="text" class="form-input" placeholder="https://..." />
+      <input type="text" class="form-input" id="inputImage" placeholder="https://..." />
     </div>
 
     <div class="form-group">
       <label class="form-label">Chi tiết sản phẩm</label>
-      <textarea class="form-input form-textarea" placeholder=""></textarea>
+      <textarea class="form-input form-textarea" id="inputDesc" placeholder=""></textarea>
     </div>
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="closeModal()">Hủy</button>
-      <button class="btn-submit">Thêm</button>
+      <button class="btn-submit" onclick="validateCreate()">Thêm</button>
     </div>
   </div>
 
+  
+  <div class="modal" id="modalEdit">
+    <div class="modal-edit">
+    <div class="modal-header">
+      <h2 class="modal-title">Cập nhật danh mục</h2>
+      <button class="modal-close" onclick="closeModalEdit()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Mã danh mục <span class="required">*</span></label>
+        <input type="text" class="form-input" id="editID"/>
+        <input type="hidden" id="editOriginalID">
+        <span class="error-msg" id="idEditErr">Không được để trống mã danh mục</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tên danh mục <span class="required">*</span></label>
+        <input type="text" class="form-input" id="editName" />
+        <span class="error-msg" id="nameEditErr">Không được để trống tên danh mục</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Trạng thái</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="editStatus" id="inputStatus" value="active" checked />
+            <span>Đang hoạt động</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="editStatus" id="inputStatus" value="inactive" />
+            <span>Ngừng hoạt động</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModalEdit()">Hủy</button>
+      <button class="btn-submit" onclick="editCategory()">Lưu</button>
+    </div>
+  </div>
+  </div>
+
+  <div class="modal" id="modal-del">
+    <div class="modal-delete">
+      <div class="icon-error"><i class="fa-solid fa-circle-exclamation"></i></div>
+      <div class="del-body">
+        <h2>Xác nhận</h2>
+        <p id="deleteName"></p>
+      </div>
+      <div class="del-footer">
+        <button class="btn-cancel" onclick="closeModalDelete()">Hủy</button>
+        <button class="btn-submit-delete" onclick="delCategory()">Xóa</button>
+      </div>
+    </div>
+  </div>
+
+
+
 <script>
-  function openModal() {
+    function openModal() {
       document.getElementById('modal').classList.add('active');
       document.getElementById('modalOverlay').classList.add('active');
     }
@@ -287,7 +241,35 @@
       document.getElementById('modal').classList.remove('active');
       document.getElementById('modalOverlay').classList.remove('active');
     }
+    function openModalEdit(id, name, status) {
+      document.getElementById('editID').value = id;
+      document.getElementById('editOriginalID').value = id;
+      document.getElementById('editName').value = name;
+      const radios = document.querySelectorAll('input[name="editStatus"]');
+      radios.forEach(r => r.checked = (r.value === status));
+      document.getElementById('modalEdit').classList.add('active');
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModalEdit() {
+      document.getElementById('modalEdit').classList.remove('active');
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
+
+    function openModelDelete(id, name) {
+      delId = id;
+      document.getElementById('deleteName').textContent =
+        `Bạn có chắc chắn muốn xóa danh mục "${name}" khỏi hệ thống không?`;
+      document.getElementById('modal-del').classList.add('active');
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+    function closeModalDelete() {
+      document.getElementById('modal-del').classList.remove('active');
+      document.getElementById('modalOverlay').classList.remove('active');
+    }
 </script>
+
+<script src="../js/product-manager.js"></script>
 
 </body>
 </html>
