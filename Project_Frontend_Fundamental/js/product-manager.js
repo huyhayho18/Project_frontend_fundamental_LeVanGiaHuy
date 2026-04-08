@@ -172,10 +172,10 @@ function validateCreate() {
     clearAddErrors();
     let check = true;
 
-    let id       = document.getElementById('inputId').value.trim();
-    let name     = document.getElementById('inputName').value.trim();
+    let id = document.getElementById('inputId').value.trim();
+    let name = document.getElementById('inputName').value.trim();
     let category = document.getElementById('inputCategory').value;
-    let price    = document.getElementById('inputPrice').value.trim();
+    let price = document.getElementById('inputPrice').value.trim();
     let quantity = document.getElementById('inputQuantity').value.trim();
     let discount = document.getElementById('inputDiscount').value.trim();
 
